@@ -1,21 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // DOM Elements
     const blogContainer = document.getElementById("blog-container");
     const loadingIndicator = document.querySelector(".loading");
     const filterButtons = document.querySelectorAll(".filter-btn");
 
-    // Constants
     const POSTS_PER_LOAD = 6;
     const TOTAL_POSTS = 100;
 
-    // State
     let currentIndex = 0;
     let isLoading = false;
     let currentCategory = 'all';
     let allPosts = [];
     let filteredPosts = [];
 
-    // Content Data
     const categories = ["technology", "lifestyle", "travel", "food"];
     const images = [
         "/api/placeholder/400/320",
@@ -128,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "Thomas Wright"
     ];
 
-    // Helper Functions
     function getRandomDate() {
         const start = new Date(2024, 0, 1);
         const end = new Date(2025, 0, 7);
@@ -182,7 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
         isLoading = true;
         loadingIndicator.classList.add("visible");
 
-        // Simulate network delay
         await new Promise(resolve => setTimeout(resolve, 800));
 
         const postsToLoad = filteredPosts.slice(currentIndex, currentIndex + POSTS_PER_LOAD);
@@ -199,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
         isLoading = false;
         loadingIndicator.classList.remove("visible");
 
-        // Update infinite scroll status
         if (currentIndex >= filteredPosts.length) {
             window.removeEventListener('scroll', handleScroll);
         }
@@ -217,19 +210,16 @@ document.addEventListener("DOMContentLoaded", () => {
         currentIndex = 0;
         blogContainer.innerHTML = '';
         
-        // Filter posts based on category
         filteredPosts = category === 'all' 
             ? allPosts 
             : allPosts.filter(post => post.category === category);
 
-        // Reset infinite scroll
         window.removeEventListener('scroll', handleScroll);
         window.addEventListener('scroll', handleScroll);
         
         loadPosts();
     }
 
-    // Event Listeners
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             // Update active button state
@@ -241,7 +231,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Header scroll effect
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
@@ -255,16 +244,12 @@ document.addEventListener("DOMContentLoaded", () => {
         lastScroll = currentScroll;
     });
 
-    // Initialize
     function init() {
-        // Generate all posts
         allPosts = Array.from({ length: TOTAL_POSTS }, (_, index) => generateBlogPost(index));
         filteredPosts = allPosts;
 
-        // Load initial posts
         loadPosts();
 
-        // Add scroll event listener
         window.addEventListener('scroll', handleScroll);
     }
 
