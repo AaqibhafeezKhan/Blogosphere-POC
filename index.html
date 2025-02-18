@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BlogSphere - Your Daily Read</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="BlogSphere empowers writers worldwide to share their stories and connect with readers. Discover daily posts on technology, lifestyle, travel, and food." />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-tN9bAl2sK0k2eAx4F9Q5cdqRoS9/gpXG2e+mX6lKx+B6/8K0V7aN5x0GJpTJc9pUp7y6R5FxRSFi89PNJ4FQ8Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   <header>
     <div class="header-content">
       <a href="#" class="logo">
-        <i class="fas fa-pen-fancy"></i>
-        BlogSphere
+        <i class="fas fa-pen-fancy" aria-hidden="true"></i>
+        <span class="sr-only">BlogSphere</span>
+        <span class="logo-text">BlogSphere</span>
       </a>
-      <nav>
+      <nav aria-label="Primary Navigation">
         <ul>
-          <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
-          <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
-          <li><a href="#"><i class="fas fa-user"></i> Login</a></li>
+          <li><a href="#"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+          <li><a href="#"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a></li>
+          <li><a href="#"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
+          <li><a href="#"><i class="fas fa-user" aria-hidden="true"></i> Login</a></li>
         </ul>
       </nav>
+      <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+      </button>
     </div>
   </header>
 
   <main>
-    <div class="filters">
-      <button class="filter-btn">All Posts</button>
-      <button class="filter-btn">Technology</button>
-      <button class="filter-btn">Lifestyle</button>
-      <button class="filter-btn">Travel</button>
-      <button class="filter-btn">Food</button>
-    </div>
-
-    <section id="blog-container"></section>
-
-    <div class="loading">
-      <div class="loading-spinner"></div>
+    <section class="filters" aria-label="Filter Posts">
+      <button class="filter-btn active" data-category="all">All Posts</button>
+      <button class="filter-btn" data-category="technology">Technology</button>
+      <button class="filter-btn" data-category="lifestyle">Lifestyle</button>
+      <button class="filter-btn" data-category="travel">Travel</button>
+      <button class="filter-btn" data-category="food">Food</button>
+    </section>
+    <section class="search" aria-label="Search Posts">
+      <input type="text" id="search-input" placeholder="Search posts..." aria-label="Search posts" />
+      <button id="search-clear" aria-label="Clear search"><i class="fas fa-times"></i></button>
+    </section>
+    <section id="blog-container" aria-live="polite"></section>
+    <div class="loading" aria-hidden="true">
+      <div class="loading-spinner" role="status"></div>
       <p>Loading more posts...</p>
     </div>
   </main>
@@ -58,14 +67,16 @@
       <div class="footer-section">
         <h3>Connect With Us</h3>
         <ul class="social-links">
-          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+          <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Facebook</span></a></li>
+          <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">Instagram</span></a></li>
+          <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a></li>
         </ul>
       </div>
     </div>
   </footer>
-
+  
+  <button id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
   <script src="script.js"></script>
-   
+</body>
+</html>
