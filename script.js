@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const blogContainer = document.getElementById("blog-container");
   const loadingIndicator = document.querySelector(".loading");
   const filterButtons = document.querySelectorAll(".filter-btn");
-  const searchInput = document.getElementById("search-input");
-  const searchClear = document.getElementById("search-clear");
   const backToTopBtn = document.getElementById("back-to-top");
   const darkModeToggle = document.getElementById("dark-mode-toggle");
 
@@ -15,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let allPosts = [];
   let filteredPosts = [];
   let currentCategory = "all";
-  let currentSearchQuery = "";
 
   const categories = ["technology", "lifestyle", "travel", "food"];
   const images = [
@@ -130,9 +127,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function getRandomDate() {
     const start = new Date(2024, 0, 1);
     const end = new Date(2025, 0, 7);
-    return new Date(
-      start.getTime() + Math.random() * (end.getTime() - start.getTime())
-    ).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
+      .toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
   }
 
   function generateBlogPost(index) {
@@ -204,17 +200,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function applyFilters() {
     currentIndex = 0;
     blogContainer.innerHTML = "";
-    filteredPosts = allPosts.filter(post => {
-      const matchesCategory = currentCategory === "all" || post.category === currentCategory;
-      const matchesSearch =
-        post.title.toLowerCase().includes(currentSearchQuery) ||
-        post.content.toLowerCase().includes(currentSearchQuery) ||
-        post.author.toLowerCase().includes(currentSearchQuery);
-      return matchesCategory && matchesSearch;
-    });
+    filteredPosts = allPosts.filter(post => currentCategory === "all" || post.category === currentCategory);
     window.removeEventListener("scroll", handleScroll);
     if (filteredPosts.length === 0) {
-      blogContainer.innerHTML = "<p class='no-results'>No posts found. Try a different search.</p>";
+      blogContainer.innerHTML = "<p class='no-results'>No posts found.</p>";
       return;
     }
     window.addEventListener("scroll", handleScroll);
@@ -228,17 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
       currentCategory = button.dataset.category;
       applyFilters();
     });
-  });
-
-  searchInput.addEventListener("input", () => {
-    currentSearchQuery = searchInput.value.trim().toLowerCase();
-    applyFilters();
-  });
-
-  searchClear.addEventListener("click", () => {
-    searchInput.value = "";
-    currentSearchQuery = "";
-    applyFilters();
   });
 
   backToTopBtn.addEventListener("click", () => {
