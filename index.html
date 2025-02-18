@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BlogSphere - Your Daily Read</title>
   <meta name="description" content="BlogSphere empowers writers worldwide to share their stories and connect with readers. Discover daily posts on technology, lifestyle, travel, and food." />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-tN9bAl2sK0k2eAx4F9Q5cdqRoS9/gpXG2e+mX6lKx+B6/8K0V7aN5x0GJpTJc9pUp7y6R5FxRSFi89PNJ4FQ8Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -39,11 +39,8 @@
       <button class="filter-btn" data-category="travel">Travel</button>
       <button class="filter-btn" data-category="food">Food</button>
     </section>
-    <section class="search" aria-label="Search Posts">
-      <input type="text" id="search-input" placeholder="Search posts..." aria-label="Search posts" />
-      <button id="search-clear" aria-label="Clear search"><i class="fas fa-times"></i></button>
-    </section>
     <section id="blog-container" aria-live="polite"></section>
+
     <div class="loading" aria-hidden="true">
       <div class="loading-spinner" role="status"></div>
       <p>Loading more posts...</p>
